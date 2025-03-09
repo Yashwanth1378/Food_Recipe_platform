@@ -1,34 +1,44 @@
-import React, { useState } from 'react';
-import Modal from './Modal';
+import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom';
-import InputForm from './InputForm';
+
+import Modal from './Modal'
+import InputForm from './InputForm'
+
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isLogin, setIsLogin] = useState(false); 
+  const [isOpen,setIsOpen]=useState(false)
+  let token=localStorage.getItem('token')
+  const [isLogin,setIsLogin]=useState(token ? false : true)
 
-  const checkLogin = () => {
-    setIsOpen(true);
-  };
+  useEffect(()=>{
+  setIsLogin(token ? false : true)
+  },[token])
+
+
+  const checkLogin=()=>{
+    if(token){
+      localStorage.removeItem('token')
+      localStorage.removeItem('user')
+      setIsLogin(true)
+    }
+    else{
+      setIsOpen(true)
+    }
+
+}
 
   return (
     <>
-      <header>
-        <h2>Food Recipe</h2>
-        <ul>
-          <li><NavLink to="/">Home</NavLink></li>
-          <li>My Recipe</li>
-          <li>Favourites</li>
-          <li onClick={checkLogin}>
-            <p className='login'>{isLogin ? "Logout" : "Login"}</p>
-          </li>
-        </ul>
-      </header>
-      {isOpen && (
-        <Modal onClose={() => setIsOpen(false)}>
-          <InputForm setIsOpen={setIsOpen} /> 
-        </Modal>
-      )}
+        <header>
+            <h2>Food Blog</h2>
+            <ul>
+                <li><NavLink to="/">Home</NavLink></li>
+                <li onClick={()=>isLogin && setIsOpen(true)}><NavLink to={!isLogin ? "/myRecipe" : "/"}>My Recipe</NavLink></li>
+                <li onClick={()=>isLogin && setIsOpen(true)}><NavLink to={!isLogin ? "/favRecipe" : "/"}>Favourites</NavLink></li>
+                <li onClick={checkLogin}><p className='login'>{(isLogin) ? "Login" : "Logout"}</p></li>
+            </ul>
+        </header>
+       { (isOpen) && <Modal onClose={()=>setIsOpen(false)}><InputForm setIsOpen={()=>setIsOpen(false)}/></Modal>}
     </>
-  );
+  )
 }
