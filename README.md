@@ -14,7 +14,7 @@ The Food Recipe App is a full-stack web application designed to help users disco
 
 ## Backend
 
-The backend is built with Node.js and Express, and it uses MongoDB for data storage. The backend handles user authentication, recipe management, and image uploads.
+The backend is built with Node.js and Express, and it uses MongoDB Atlas for data storage. The backend handles user authentication, recipe management, and image uploads.
 
 ## Frontend
 
