@@ -23,7 +23,7 @@ export default function RecipeItems() {
 
 
     const onDelete=async(id)=>{
-        await axios.delete(`http://localhost:5000/recipe/${id}`)
+        await axios.delete(`https://food-recipe-platform.onrender.com/recipe/${id}`)
         .then((res)=>console.log(res))
         setAllRecipes(recipes=>recipes.filter(recipes=>recipes._id !== id))
         let filterItem=favItems.filter(recipe=>recipe._id === id)
@@ -43,7 +43,7 @@ export default function RecipeItems() {
            allRecipes?.map((item,index)=>{
             return(
                 <div key={index} className='card'>
-                    <img src={`http://localhost:5000/images/${item.coverImage}`} width="120px" height="100px"></img>
+                    <img src={`https://food-recipe-platform.onrender.com/images/${item.coverImage}`} width="120px" height="100px"></img>
                     <div  className='card-body'>
                         <div className='title'>{item.title}</div>
                         <div className='icons'>
