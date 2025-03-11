@@ -22,4 +22,5 @@ The frontend is built with React and Vite. It provides a user-friendly interface
 
 ## Deployment
 
-Deployment links will be added here once the application is deployed.
+- Frontend: [Food Recipe Frontend](https://foodrecipefrontend.onrender.com)
+- Backend: [Food Recipe Backend](https://food-recipe-platform.onrender.com)
